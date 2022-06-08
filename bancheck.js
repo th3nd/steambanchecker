@@ -32,12 +32,12 @@ async function get_friends(my_url) {
             console.log('nick:             ' + general.nickname)
             console.log('id64:             ' + id)
             console.log('steam level:      ' + level)
-            if (bans.communityBanned == 'true') {
+            if (bans.communityBanned == true) {
                 console.log('community banned: yes')
                 totalcommbans++
                 commbannedusers += '\n-' + id
             }
-            if (bans.vacBanned == 'true') {
+            if (bans.vacBanned == true) {
                 console.log('vac banned:       yes')  
                 totalvacbans++
                 vacbannedusers += '\n-' + id
