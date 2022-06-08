@@ -13,8 +13,8 @@ async function get_friends(my_url) {
     let totalcommbans = 0
     let commbannedusers = ''
 
-    let totalgamebans = 0
-    let gamebannedusers = ''
+    let totalvacbans = 0
+    let vacbannedusers = ''
 
     let totaltradebans = 0
     let tradebannedusers = ''
@@ -32,8 +32,14 @@ async function get_friends(my_url) {
             console.log('nick:             ' + general.nickname)
             console.log('id64:             ' + id)
             console.log('steam level:      ' + level)
-            console.log('community banned: ' + bans.communityBanned)
-            console.log('vac banned:       ' + bans.vacBanned)
+            if (bans.communityBanned == 'true') {
+                console.log('community banned: yes')
+            }
+            if (bans.vacBanned == 'true') {
+                console.log('vac banned:       yes')  
+                totalvacbans++
+                vacbannedusers += '\n-' + id
+            }
             if (bans.economyBan == 'banned') {
                 console.log('economy banned:   yes')
                 totaltradebans++
