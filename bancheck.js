@@ -58,6 +58,8 @@ async function get_friends(my_url) {
     console.log('\n')
     console.log('-------------------')
     console.log('accounts checked: ' + friends.length)
+    console.log('community bans:   ' + totalcommbans)
+    console.log('vac bans:         ' + totalvacbans)
     console.log('tradebans:        ' + totaltradebans)
     console.log('')
     console.log('tradeban id64:    ' + tradebannedusers)
