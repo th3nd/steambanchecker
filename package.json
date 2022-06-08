@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "steamapi": "^2.2.0"
+  }
+}

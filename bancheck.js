@@ -26,6 +26,10 @@ async function get_friends(my_url) {
         let general = await steam.getUserSummary(id)
         let level = await steam.getUserLevel(id)
         let bans = await steam.getUserBans(id)
+
+        let cban = bans.communityBanned
+        let vban = bans.vacBanned
+        let eban = bans.economyBan
         
         if (displayinfo) {
             console.log('')
@@ -33,19 +37,25 @@ async function get_friends(my_url) {
             console.log('id64:             ' + id)
             console.log('steam level:      ' + level)
             if (bans.communityBanned == true) {
-                console.log('community banned: yes')
+                console.log('community banned: true')
                 totalcommbans++
                 commbannedusers += '\n-' + id
+            } else {
+                console.log('community banned: false')
             }
             if (bans.vacBanned == true) {
-                console.log('vac banned:       yes')  
+                console.log('vac banned:       true')  
                 totalvacbans++
                 vacbannedusers += '\n-' + id
+            }else {
+                console.log('vac banned:       false')  
             }
             if (bans.economyBan == 'banned') {
-                console.log('economy banned:   yes')
+                console.log('economy banned:   true')
                 totaltradebans++
                 tradebannedusers += '\n- ' + id
+            } else {
+                console.log('economy banned:   false')
             }
         } else {
             if (bans.economyBan == 'banned') {
@@ -55,14 +65,20 @@ async function get_friends(my_url) {
         }
     }
 
+    if (commbannedusers.length == 0) commbannedusers = '\nnone'
+    if (vacbannedusers.length == 0) vacbannedusers = '\nnone'
+    if (tradebannedusers.length == 0) tradebannedusers = '\nnone'
+
     console.log('\n')
     console.log('-------------------')
     console.log('accounts checked: ' + friends.length)
-    console.log('community bans:   ' + totalcommbans)
-    console.log('vac bans:         ' + totalvacbans)
-    console.log('tradebans:        ' + totaltradebans)
+    console.log('communitybans:   ' + totalcommbans)
+    console.log('vacbans:         ' + totalvacbans)
+    console.log('tradebans:       ' + totaltradebans)
     console.log('')
-    console.log('tradeban id64:    ' + tradebannedusers)
+    console.log('commbanned id64: ' + commbannedusers)
+    console.log('vacbanned id64:  ' + vacbannedusers)
+    console.log('tradebanned id64:' + tradebannedusers)
 
 }
 
