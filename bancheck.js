@@ -1,9 +1,21 @@
+const fs = require('fs');
 const api = require('steamapi')
-const steam = new api('EC38E5FB824530A42A57627DBC86FB3D')
 
-let displayinfo = true
+const displayinfo = true
+async function get_friends() {
 
-async function get_friends(my_url) {
+    const txt = await fs.readFileSync('info.txt', 'utf8')
+
+    if (txt.includes('type')) {
+        console.log('please input your api key and profile link into info.txt')
+        return
+    }
+
+    const apistr = txt.slice(0, 32)
+    const my_url = txt.slice(32, txt.length)
+
+    const steam = new api(apistr)
+
     const my_id = await steam.resolve(my_url)
     const friends = await steam.getUserFriends(my_id)
 
@@ -73,4 +85,4 @@ async function get_friends(my_url) {
         console.log('tradebanned id64: ' + tradebannedusers)
 }
 
-get_friends('https://steamcommunity.com/id/63u')
+get_friends()
