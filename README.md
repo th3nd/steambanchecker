@@ -2,7 +2,7 @@
 displays banned people from your friendslist
 
 #### how to use:
-> input ur api key and profile link into info.txt "apikey *space* link"
+> input ur api key and profile link into info.txt "apikey *nospace* link"
 >
 > set ur friends list to public in privacy settings
 >
